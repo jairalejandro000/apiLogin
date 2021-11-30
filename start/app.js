@@ -11,6 +11,7 @@
 |
 */
 const providers = [
+  '@adonisjs/validator/providers/ValidatorProvider',
   '@adonisjs/framework/providers/AppProvider',
   '@adonisjs/framework/providers/ViewProvider',
   '@adonisjs/lucid/providers/LucidProvider',

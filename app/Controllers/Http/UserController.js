@@ -1,31 +1,21 @@
 'use strict'
+const User = use('App/Models/User')
+const Database = use('Database')
 
 class UserController {
 
-    async createUser({request, response}){
-        return response.error().json({message:'Validation error'})
-        const user = await User.create({})
-        return response.ok({message:'User created succesful',user})
+    async createUser({response}){
+        const user = await User.create({email,  username, password})
+        return response.ok({message: 'User created succesful',user})
     }
     async getUser({params, response}){
-        const User = await User.findById('id', params.id)
-        return response.error().json({message:'User was not found'})
-        return response.ok().json({User})
+        const user = await User.findBy('id', params.id)
+        return response.ok({message: 'User was found', user})
     }
     async getUsers({response}){
-        const Users = await User.findAll()
-        return response.status(200).json({message:''})
-        return response.ok().json({message:'', Users})
+        const users = await User.all()
+        return response.ok({users})
     }
-    async deleteUser({params, response }){
-        const user = await User.findById(paramd.id)
-        await user.delete
-        return response.error().json({message:'User was not found'})
-        return response.ok().json({message:'User was deleted', user})
-    }
-    /*async prueba({response}){
-        return response.status(200).json({message:"sdlkfknsdkfl"});
-    }*/
 }
 
 module.exports = UserController

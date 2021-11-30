@@ -8,7 +8,7 @@ const Model = use('Model')
 
 class User extends Model {
   static get hidden(){
-    return['id', 'created_at', 'updated_at']
+    return['id', 'created_at', 'updated_at', 'password']
   }
   static boot () {
     super.boot()

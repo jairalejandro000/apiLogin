@@ -16,12 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.on('/').render('welcome')
-Route.get('/prueba', 'UserController.prueba')
+//Route.on('/').render('welcome')
+
 Route.group(() =>{
-    Route.get('/show', 'UserController.createUser')
-    Route.get('/show/:id', 'UserController.createUser')
-    Route.post('/create', 'UserController.createUser')
-    Route.put('/update/:id', 'UserController.createUser')
-    Route.delete('/delete/:id', 'UserController.createUser')
-})
+    Route.get('/show', 'UserController.getUsers')
+    Route.get('/show/:id', 'UserController.getUser')
+    //Route.post('/create', 'UserController.createUser').validator('user')
+}).prefix('/user').middleware(['auth:jwt'])
+
+Route.group(() =>{
+    Route.post('/logIn', 'AuthController.logIn').validator('register')
+}).prefix('/Auth').middleware(['auth:jwt'])
+
+Route.post('/create', 'UserController.createUser').validator('user')
