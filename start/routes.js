@@ -21,11 +21,7 @@ const Route = use('Route')
 Route.group(() =>{
     Route.get('/show', 'UserController.getUsers')
     Route.get('/show/:id', 'UserController.getUser')
-    //Route.post('/create', 'UserController.createUser').validator('user')
+    Route.post('/create', 'UserController.createUser').validator('register')
 }).prefix('/user').middleware(['auth:jwt'])
 
-Route.group(() =>{
-    Route.post('/logIn', 'AuthController.logIn').validator('register')
-}).prefix('/Auth').middleware(['auth:jwt'])
-
-Route.post('/create', 'UserController.createUser').validator('user')
+Route.post('/logIn', 'UserController.logIn').validator('user')

@@ -1,16 +1,18 @@
 'use strict'
-
-const UserController = require("./UserController")
+const User = use('App/Models/User')
+const Hash = use('Hash')
 
 class AuthController {
 
     async logIn({request, auth, response}){
-        const user = await User.findBy('email', email)
-        const isSame = await Hash.verify(password, user.password)
+        await auth.logout()
+        /*const userData = request.only(['email', 'password'])
+        const U = await User.findBy('email', userData.email)
+        const isSame = await Hash.verify(userData.password, U.password)
         if(isSame){
-            const token = await auth.attempt(email, password)
+            const token = await auth.attempt(U.email, U.password)
             return response.ok({message:'Succesful logIn', token})
-         }
+        }*/
     }
 }
 

@@ -9,9 +9,13 @@ class register {
   }
   get rules () {
     return {
-      email: 'required|email|min:10|max:254',
+      email: 'required|email|unique:users,email|min:10|max:254',
+      username: 'required|string|unique:users,username',
       password: 'required|min:8|max:16'
     }
+  }
+  async fails (errorMessages) {
+    return this.ctx.response.send(errorMessages)
   }
 }
 

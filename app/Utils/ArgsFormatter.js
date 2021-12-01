@@ -1,6 +1,5 @@
-const user = require("../Validators/user")
-
-class MyFormatter {
+'use strict'
+class ArgsFormatter {
     constructor () {
       this.errors = []
     }
@@ -23,4 +22,4 @@ class MyFormatter {
       return this.errors.length ? this.errors : null
     }
   }
-  module.exports = user
+  module.exports = ArgsFormatter
