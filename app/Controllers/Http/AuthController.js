@@ -5,14 +5,16 @@ const Hash = use('Hash')
 class AuthController {
 
     async logIn({request, auth, response}){
-        await auth.logout()
-        /*const userData = request.only(['email', 'password'])
-        const U = await User.findBy('email', userData.email)
-        const isSame = await Hash.verify(userData.password, U.password)
+        const {email, password} = request.only(['email', 'password'])
+        const U = await User.findBy('email', email)
+        const isSame = await Hash.verify(password, U.password)
         if(isSame){
-            const token = await auth.attempt(U.email, U.password)
+            const token = await auth.attempt(email, password)
             return response.ok({message:'Succesful logIn', token})
-        }*/
+        }else{
+            return response.status(200).json({message:'Wrong credentials'})
+        }
+        
     }
 }
 

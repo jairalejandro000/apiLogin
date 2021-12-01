@@ -11,16 +11,19 @@ class UserController {
     }
     async getUser({params, response}){
         const user = await User.findBy('id', params.id)
-        return response.ok({message: 'User was found', user})
+        if(user != null){
+            return response.ok({message: 'User was found', user})
+        }else{
+            return response.status(200).json({message:'User was not found'})
+        }
     }
     async getUsers({response}){
         const users = await User.all()
-        return response.ok({users})
-    }
-    async logIn({request, auth, response}){
-        const {email, password} = request.only(['email', 'password'])
-        const token = await auth.attempt(email, password)
-        return response.ok({message:'Succesful logIn', token})
+        if(users != null){
+            return response.ok({users})
+        }else{
+            return response.status(200).json({message:'Empty table'})
+        }
     }
 }
 

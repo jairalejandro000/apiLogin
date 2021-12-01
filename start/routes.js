@@ -24,4 +24,6 @@ Route.group(() =>{
     Route.post('/create', 'UserController.createUser').validator('register')
 }).prefix('/user').middleware(['auth:jwt'])
 
-Route.post('/logIn', 'UserController.logIn').validator('user')
+Route.post('/logIn', 'AuthController.logIn')
+.validator('user')
+.prefix('/Auth')
