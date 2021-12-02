@@ -27,3 +27,7 @@ Route.group(() =>{
 Route.post('/logIn', 'AuthController.logIn')
 .validator('user')
 .prefix('/Auth')
+
+Route.get('/', () => {
+    return 'Hello world'
+  })
