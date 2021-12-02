@@ -10,11 +10,11 @@ class AuthController {
         const isSame = await Hash.verify(password, U.password)
         if(isSame){
             const token = await auth.attempt(email, password)
-            return response.ok({message:'Succesful logIn', token})
+            return response.ok({message:'Succesful logIn', username:U.username, token})
         }else{
             return response.status(200).json({message:'Wrong credentials'})
         }
-        
+
     }
 }
 
