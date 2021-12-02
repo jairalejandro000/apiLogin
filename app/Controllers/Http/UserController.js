@@ -25,6 +25,9 @@ class UserController {
             return response.status(200).json({message:'Empty table'})
         }
     }
+    async helloWolrd({response}){
+        return response.ok({message: 'hello World'})
+    }
 }
 
 module.exports = UserController
